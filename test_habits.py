@@ -47,9 +47,10 @@ def test_longest_streak_one_date():
     habit.completion_dates = [date.today()- timedelta(days=2), date.today() - timedelta(days=1), date.today()]
     assert habit.get_longest_streak() == 3
 
-#def test_longest_streak_dates_with_a_break():
+def test_longest_streak_dates_with_a_break():
+    # two streaks with a gap - longest streak should be 3
     habit =  Habit("coding", "daily", 14)
-    habit.completion_dates = [date.today()- timedelta(days=2), date.today() - timedelta(days=1)]
-    assert habit.get_longest_streak() == 2
+    habit.completion_dates = [date.today()- timedelta(days=4), date.today() - timedelta(days=3), date.today()- timedelta(days=2),date.today()]
+    assert habit.get_longest_streak() == 3
 
     
