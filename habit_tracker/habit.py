@@ -45,24 +45,22 @@ class Habit:
         
     def get_longest_streak(self):
         #check if completion_dates is not empty
-        if not self.completion_dates == []:
+        if not self.completion_dates:
             return 0
-            step = self.periodicity_checker()
-            #sort list completion_dates
-            sorted_dates = sorted(self.completion_dates)
-            current_streak =  1
-            longest_streak = 1 
-            
-            for i in range(1,len(sorted_dates)):
-                diff = (sorted_dates[i] - sorted_dates[i-1]).days
-                if diff == step:
-                    current_streak += 1
-                else:
-                    current_streak = 1
-
-            if current_streak > longest_streak:
-                longest_streak =  current_streak
-            return longest_streak
+        step = self.periodicity_checker() #checks for the periodicity of habit task, daily = 1, weekly = 7 that is there should be a log once in 7 days , monthly = 30, log once in 30 days 
+        #sort list completion_dates
+        sorted_dates = sorted(self.completion_dates)
+        current_streak =  1 #default value of starting count of current streak
+        longest_streak = 1 #dfault value of starting count of longest streak
+        for i in range(1,len(sorted_dates)): #loops through the sorted dates list
+            diff = (sorted_dates[i] - sorted_dates[i-1]).days  #diff is a variable that stores the difference between the index date and previous date to find gaps
+            if diff == step: #if the difference is the same as step, that is periodicity then execute the following
+                current_streak += 1 # adds 1 to the current streak count
+            else:
+                current_streak = 1  # if diff is not the same value as step, then reassign current_streak to 1
+            if current_streak > longest_streak: # if current_streak value is greater than longest_streak then execute the following block
+                longest_streak =  current_streak # longest streak is the current streak
+        return longest_streak # keep value of longest streak now. 
 
 
 
