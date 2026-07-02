@@ -67,11 +67,11 @@ class Habit:
         return longest_streak # keep value of longest streak now. 
 
     def broken_cycles(self):
-        #1 cycle = full target period completed e.g. 7 consecutive days, broken_cycles counts full target period blocks that failed
-        total_periods = (date.today() - self.creation_date).days // (self.periodicity_checker())
-        broken_cycles
-        #total_periods - completed_periods
-
+        #checks how many times the user didn't complete their streak
+        total_cycles = (date.today() - self.creation_date).days // self.target_period #total_cycles is the difference from the time the habit is created and the date today divided by the target period
+        completed_cycles = self.get_longest_streak() // self.target_period # completed cycles is the longest streak divided by the target period. We call longest/-streak() because there is no need for the empty list check since get_longest_streak() already returns 0 for empty lists, apply the DRY principle.
+        return max(0, total_cycles - completed_cycles)
+    
     
     def is_broken(self):
         streak = self.get_current_streak()
