@@ -41,7 +41,7 @@ def test_longest_streak_one_date():
     habit.completion_dates = [date.today()]
     assert habit.get_longest_streak() == 1
 
-#def test_longest_streak_consecutive_dates_with_no_break():
+def test_longest_streak_consecutive_dates_with_no_break():
     #completion_dates has consecutive dates with no break
     habit =  Habit("coding", "daily", 14)
     habit.completion_dates = [date.today()- timedelta(days=2), date.today() - timedelta(days=1), date.today()]
