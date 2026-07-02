@@ -16,6 +16,7 @@ class Habit:
     def mark_complete(self):
         #add today's date to completion_dates list if it is not already in the list
         if date.today() not in self.completion_dates:
+            #check if it is not in list
             self.completion_dates.append(date.today())
         else:
             print("Already completed today!")
@@ -66,7 +67,7 @@ class Habit:
         return longest_streak # keep value of longest streak now. 
 
     def broken_cycles(self):
-        #this function answers how many times did the user miss completing their habit
+        #1 cycle = full target period completed e.g. 7 consecutive days, broken_cycles counts full target period blocks that failed
         total_periods = (date.today() - self.creation_date).days // (self.periodicity_checker())
         broken_cycles
         #total_periods - completed_periods
