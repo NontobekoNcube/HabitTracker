@@ -13,6 +13,7 @@ class Habit:
         self.creation_date = date.today() #automatically set to current date habit object is created on. 
         self.completion_dates = []
 
+
     def mark_complete(self):
         #add today's date to completion_dates list if it is not already in the list
         if date.today() not in self.completion_dates:
@@ -21,6 +22,7 @@ class Habit:
         else:
             print("Already completed today!")
     
+
     def periodicity_checker(self):
     #check periodicity to determine the step of the streak counter if completion_dates list is not empty
             if self.periodicity == "daily":
@@ -37,7 +39,7 @@ class Habit:
         #checks if completion_dates is not empty
         if self.completion_dates == []:
             return 0
-        
+
         #check periodicity to determine the step of the streak counter
         step = self.periodicity_checker()
         streak = 0
@@ -76,7 +78,5 @@ class Habit:
     def is_broken(self):
         streak = self.get_current_streak()
         return streak == 0
-
-
-    #def change_periodicity():
+    
 

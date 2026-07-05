@@ -53,4 +53,15 @@ def test_longest_streak_dates_with_a_break():
     habit.completion_dates = [date.today()- timedelta(days=4), date.today() - timedelta(days=3), date.today()- timedelta(days=2),date.today()]
     assert habit.get_longest_streak() == 3
 
+#tests for broken_cycles(self) to test function when completion_list is empty, there are no breaks and there are some breaks
+#def test_broken_cycles_empty_list():
+    #habit = Habit("coding", "daily", 7)
+    # no completions
+    #assert habit.get_broken_cycles() == 0 
+
+#def test_broken_cycles_no_breaks():
+
+#def test_broken_cycles_some_breaks():
+
+
     
