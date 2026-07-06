@@ -57,7 +57,7 @@ class Habit:
         #sort list completion_dates
         sorted_dates = sorted(self.completion_dates)
         current_streak =  1 #default value of starting count of current streak
-        longest_streak = 1 #dfault value of starting count of longest streak
+        longest_streak = 1 #default value of starting count of longest streak
         for i in range(1,len(sorted_dates)): #loops through the sorted dates list
             diff = (sorted_dates[i] - sorted_dates[i-1]).days  #diff is a variable that stores the difference between the index date and previous date to find gaps
             if diff == step: #if the difference is the same as step, that is periodicity then execute the following
