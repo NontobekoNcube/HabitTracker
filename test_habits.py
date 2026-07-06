@@ -64,4 +64,8 @@ def test_longest_streak_dates_with_a_break():
 #def test_broken_cycles_some_breaks():
 
 
+# TODO: complete broken_cycles tests
+# Need to decide: empty list returns 0 or total_cycles?
+# Come back after habit_manager.py and db.py are built
+
     
