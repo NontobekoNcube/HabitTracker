@@ -1,6 +1,5 @@
 #create habit_manager class
 
-
 class HabitManager:
     def __init__(self):
         self.habits= []
