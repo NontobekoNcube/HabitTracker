@@ -10,7 +10,7 @@ def create_tables():
     cursor = conn.cursor()
 
     cursor.execute("""
-                   CREATE TABLE IF NOT EXISITS habits(
+                   CREATE TABLE IF NOT EXISTS habits(
                    id INTEGER PRIMARY KEY AUTOINCREMENT,
                    name TEXT NOT NULL,
                    periodicity TEXT,
