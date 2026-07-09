@@ -1,5 +1,7 @@
 #create habit_manager class
 
+from habit_tracker import db #call db functions
+
 class HabitManager:
     def __init__(self):
         self.habits= []
@@ -20,6 +22,14 @@ class HabitManager:
 
     def get_all_habits(self):
         return self.habits
+    
+    def save_to_db(self,habit):
+        #TODO: complete when db.py is built
+        pass
+
+    def load_from_db(self):
+        #TODO:complete when db.py is built
+        pass
 
        
 
