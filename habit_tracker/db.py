@@ -30,4 +30,6 @@ def create_tables():
     conn.commit()
     conn.close()
     
+    def save_habit(habit):
+        pass;
         
