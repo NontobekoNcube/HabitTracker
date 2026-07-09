@@ -15,7 +15,7 @@ def create_tables():
                    name TEXT NOT NULL,
                    periodicity TEXT,
                    target_period INTEGER,
-                   creationdate TEXT)
+                   creation_date TEXT)
                    """)
     
     cursor.execute("""

@@ -24,6 +24,7 @@ class HabitManager:
         return self.habits
     
     def save_to_db(self,habit):
+        #calls db.save_habit 
         #TODO: complete when db.py is built
         pass
 
