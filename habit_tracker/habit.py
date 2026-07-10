@@ -1,6 +1,6 @@
 #create habit class
 #version 1.0 : Weekly periods roll on 7 day blocks from creation date
-#version 2.0 : Will implement calendar weeks (Mon-Sun)
+#version 1.1 : Will implement calendar weeks (Mon-Sun)
 
 from datetime import date, timedelta
 
