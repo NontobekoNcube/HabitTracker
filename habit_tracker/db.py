@@ -30,16 +30,15 @@ def create_tables():
     conn.commit()
     conn.close()
     
-    def save_habit(habit):
-        conn = get_connection()
-        cursor = conn.cursor()
-
-        cursor.execute("""
-                       INSERT INTO habits (name, periodicity, target_period, creation_date)
-                       VALUES (?, ?, ?, ?)""", # sql code with placeholder values
-                       (habit.name, habit.periodicity, habit.target_period, str(habit.creation_date))) # tuple containing actual values to insert
-        habit.id = cursor.lastrowid # automatic assignment of the last row number as the ID of the new inserted row, now habit.id has a value and is not None anymore! 
-        conn.commit() #saves changes to habits.db
-        conn.close()
+def save_habit(habit):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO habits (name, periodicity, target_period, creation_date)
+            VALUES (?, ?, ?, ?)""", 
+            (habit.name, habit.periodicity, habit.target_period, str(habit.creation_date)))
+    habit.id = cursor.lastrowid # automatic assignment of the last row number as the ID of the new inserted row, now habit.id has a value and is not None anymore! 
+    conn.commit() #saves changes to habits.db
+    conn.close()
         
         
