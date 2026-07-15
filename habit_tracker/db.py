@@ -40,5 +40,8 @@ def save_habit(habit):
     habit.id = cursor.lastrowid # automatic assignment of the last row number as the ID of the new inserted row, now habit.id has a value and is not None anymore! 
     conn.commit() #saves changes to habits.db
     conn.close()
+
+def load_from_db(habit):
+    pass
         
         
