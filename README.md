@@ -95,7 +95,7 @@ Which routines precede low-energy days?
 What behavioural patterns consistently lead to positive outcomes?
 
 # Even more future versions 
-Version 2.0 – Predictive Insights
+# Version 2.0 – Predictive Insights
 Using machine learning to identify behavioural trends.
 
 Examples:
@@ -108,7 +108,7 @@ Recommend habits likely to improve wellbeing.
 
 Personalised behavioural recommendations.
 
-Version 3.0 – Behaviour Intelligence Platform
+# Version 3.0 – Behaviour Intelligence Platform
 Transform the application from a habit tracker into a personal behavioural intelligence assistant.
 
 Possible additions:

@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import date
+from habit_tracker import Habit
 
 def get_connection():
     conn = sqlite3.connect("habits.db") #connects to habits.db file
@@ -42,6 +43,27 @@ def save_habit(habit):
     conn.close()
 
 def load_from_db(habit):
-    pass
-        
+    conn = get_connection() #opens connection to habits.db
+    cursor = conn.cursor()  #cursor is a tool to run SQL commands on the database
+
+    cursor.execute("SELECT * FROM habits") #runs SQL command to select all rows from the habits table
+    rows = cursor.fetchall() #fetches all rows from the habits table, returns list of tuples, each tuple is a row in the table
+
+    habits = []
+    for row in rows:
+        # row = (id, name, periodicity, target_period, creation_date
+        habit = Habit(row[1], row[2], row[3]) #reconstruct habit object from row
+        habit.id = row[0] #set the id of the habit object to the id from the database
+        habit.creation_date = date.fromisoformat(row[4]) 
+        habits.append(habit)
+    
+    conn.close()
+    return habits
+
+def delete_habit(habit_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM habits WHERE id = ?", (habit_id,))
+    conn.commit()
+    conn.close()
         
