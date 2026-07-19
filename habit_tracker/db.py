@@ -1,12 +1,12 @@
 import sqlite3
 from datetime import date
-from habit_tracker import Habit
+from habit_tracker.habit import Habit
 
-def get_connection():
+def get_connection(): #returns a connection object to the habits.db database
     conn = sqlite3.connect("habits.db") #connects to habits.db file
     return conn
 
-def create_tables():
+def create_tables(): #creates the habits and completions tables in the database if they do not already exist
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -32,7 +32,7 @@ def create_tables():
     conn.close()
     
     
-def save_habit(habit):
+def save_habit(habit): #saves a habit object to the database
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -41,10 +41,10 @@ def save_habit(habit):
             (habit.name, habit.periodicity, habit.target_period, str(habit.creation_date)))
     habit.id = cursor.lastrowid # automatic assignment of the last row number as the ID of the new inserted row, now habit.id has a value and is not None anymore! 
     conn.commit() #saves changes to habits.db
-    conn.close()
+    conn.close() 
 
 
-def load_from_db(habit):
+def load_habits(): #loads the habits from the database and returns a list of Habit objects
     conn = get_connection() #opens connection to habits.db
     cursor = conn.cursor()  #cursor is a tool to run SQL commands on the database
     cursor.execute("SELECT * FROM habits") #runs SQL command to select all rows from the habits table
@@ -61,14 +61,14 @@ def load_from_db(habit):
     conn.close()
     return habits
 
-def delete_habit(habit_id):
+def delete_habit(habit_id): #deletes a habit from the database based on its id
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM habits WHERE id = ?", (habit_id,))
     conn.commit()
     conn.close()
         
-def save_completion(habit_id, completion_date):
+def save_completion(habit_id, completion_date): #saves the completion date for a specific habit in the database
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -78,7 +78,7 @@ def save_completion(habit_id, completion_date):
     conn.commit()
     conn.close()
 
-def load_completions(habit_id):
+def load_completions(habit_id): #loads the completion dates for a specific habit from the database and returns a list of date objects
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT date FROM completions WHERE habit_id = ?", (habit_id,))
