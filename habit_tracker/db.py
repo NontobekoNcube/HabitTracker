@@ -31,6 +31,7 @@ def create_tables():
     conn.commit()
     conn.close()
     
+    
 def save_habit(habit):
     conn = get_connection()
     cursor = conn.cursor()
@@ -42,10 +43,10 @@ def save_habit(habit):
     conn.commit() #saves changes to habits.db
     conn.close()
 
+
 def load_from_db(habit):
     conn = get_connection() #opens connection to habits.db
     cursor = conn.cursor()  #cursor is a tool to run SQL commands on the database
-
     cursor.execute("SELECT * FROM habits") #runs SQL command to select all rows from the habits table
     rows = cursor.fetchall() #fetches all rows from the habits table, returns list of tuples, each tuple is a row in the table
 
@@ -73,6 +74,15 @@ def save_completion(habit_id, completion_date):
     cursor.execute("""
         INSERT INTO completions (habit_id, date)
             VALUES (?, ?)""", 
-            (habit_id, str(completion_date)))
+            (habit_id, str(completion_date))) #converts completion_date to string to store in database  
     conn.commit()
     conn.close()
+
+def load_completions(habit_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT date FROM completions WHERE habit_id = ?", (habit_id,))
+    rows = cursor.fetchall()
+    completion_dates = [date.fromisoformat(row[0]) for row in rows] #converts string back to date object
+    conn.close()
+    return completion_dates
