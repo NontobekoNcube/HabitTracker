@@ -67,3 +67,12 @@ def delete_habit(habit_id):
     conn.commit()
     conn.close()
         
+def save_completion(habit_id, completion_date):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO completions (habit_id, date)
+            VALUES (?, ?)""", 
+            (habit_id, str(completion_date)))
+    conn.commit()
+    conn.close()
