@@ -1,6 +1,3 @@
-from habit_tracker import habit
-
-
 def get_habits_by_periodicity(habits, periodicity):
     """
     Returns a list of habits that match the given periodicity.
